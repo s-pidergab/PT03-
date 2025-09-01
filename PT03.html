@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("https://i.pinimg.com/736x/ed/97/11/ed9711bcbaf9029a6a906ffc2d97204c.jpg");
+        }
+        div{
+            width: 300px;
+            margin: auto;
+            color:aquamarine;
+            position: relative;
+            border-radius: 20px;
+            background-color: red;
+        }
+        .pass,
+        .usn{
+            width: 300px;
+        }
+        .log{
+            width:309px;
+            margin:auto;
+            color:aliceblue;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form class="shish">
+            <input name="username" type="text" placeholder="username" class="usn"><br>
+            <input name="password" type="password" placeholder="password" class="pass"><br>
+            <button name="submit" type="submit" class="log">Log in</button>
+        </form>
+    </div>
+
+    <script>
+
+        const form1 = document.querySelector('.shish');
+
+        form1.addEventListener('submit', event => { 
+            event.preventDefault();
+
+            const formData = new FormData(form1); 
+            const data = Object.fromEntries(formData);
+
+            fetch('https://fordemo-ot4j.onrender.com/users', {
+            method: 'POST', 
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+            fetch("https://fordemo-ot4j.onrender.com/users/GELAES")
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+            
+        }); 
+    </script>
+</body>
+</html>
